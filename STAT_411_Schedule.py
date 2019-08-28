@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[62]:
+# In[1]:
 
 
 import pandas as pa
@@ -9,13 +9,13 @@ import datetime as dt
 pa.set_option('max_colwidth', 200)
 
 
-# In[63]:
+# In[2]:
 
 
 first_day = dt.date(2019, 8, 27)
 
 
-# In[64]:
+# In[3]:
 
 
 holidays = [dt.date(2019, 9, 2) ]
@@ -25,25 +25,25 @@ thanksgiving_delta = thanksgiving_end - thanksgiving_start
 holidays += [thanksgiving_start + dt.timedelta(i) for i in range(thanksgiving_delta.days+1)]
 
 
-# In[65]:
+# In[4]:
 
 
 last_day = dt.date(2019, 12, 5)
 
 
-# In[66]:
+# In[5]:
 
 
 final_exam = dt.date(2019, 12, 11)
 
 
-# In[67]:
+# In[6]:
 
 
 semester_length = last_day - first_day
 
 
-# In[68]:
+# In[7]:
 
 
 class_days = []
@@ -52,7 +52,7 @@ for i in range((semester_length.days //7 + 1)):
 class_days += [final_exam]
 
 
-# In[69]:
+# In[8]:
 
 
 schedule = pa.DataFrame(class_days, columns = ['Day'])
@@ -62,14 +62,14 @@ for i in range(schedule.shape[0]):
 schedule.Week_Day = schedule.Week_Day.map(weekday_dict)
 
 
-# In[70]:
+# In[9]:
 
 
 for holiday in holidays:
     schedule.loc[schedule.Day==holiday, 'Title'] = 'No Class - University Holiday'
 
 
-# In[71]:
+# In[10]:
 
 
 def add_day(title='', description='', notes=''):
@@ -90,7 +90,7 @@ def add_day(title='', description='', notes=''):
     
 
 
-# In[72]:
+# In[11]:
 
 
 day = 0
@@ -109,17 +109,16 @@ add_day('The Data Science Process', 'Controlling for Error, Professional ethics'
 
 add_day('Team - Proposal', "Developing your team's proposal", 'Team Day 2')
 
-add_day('Wrangling the Data - 1', 'Formating the data, dealing with numerical data, '+                       'dealing with categorical data, dealing with missing data, dealing with strings, '+                       'dealing with images*')
+add_day('Wrangling the Data and Cross Validation', 'Formatting data and dealing with data types,'+        'Techniques for Cross Validation')
 
 add_day('Exploratory Data Analysis', 'Plots with seaborn, summary statistics, background '+                        'on linear regression', 'Linear regression is our first model')
 
 add_day('Principal Component Analysis', 'Singular value decomposition and principal component analysis', 
        'The most important fact from Linear Algebra')
 
-add_day('Team - Wrangling and Exploring YOUR Data', "Taking a look at the team's data - identifying and dealing "+        'with issues, looking at plots', 'Team Day 3')
-
-
 add_day('Statistical Learning and Models', 'Review of the Data Science workflow, '+                       'boostrapping our data, building our model - linear regression, testing our model')
+
+add_day('Team - Wrangling and Exploring YOUR Data', "Taking a look at the team's data - identifying and dealing "+        'with issues, looking at plots', 'Team Day 3')
 
 add_day('K-Nearest Neighbors', 'K-Nearest Neighbors for regression and categorization', 
                        'Building the actual model, plotting and testing the results.')
